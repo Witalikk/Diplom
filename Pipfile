@@ -1,0 +1,25 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "*"
+django-summernote = "*"
+django-oauth-toolkit = "*"
+djangorestframework = "*"
+djoser = "*"
+django-cors-headers = "*"
+bootstrap4 = "*"
+psycopg2 = "*"
+djangorestframework-jsonapi = "*"
+pillow = "*"
+flake8 = "*"
+celery = "*"
+redis = "*"
+eventlet = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.8"
