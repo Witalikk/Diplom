@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block sidebar %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+  <a class="navbar-brand" href="#"></a>
+    <img src="{% static 'img/brand.jpg' %}" width="70" height="30" alt="">
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+        <a href="{% url 'AutoHome-home' %}" class="ml-5">Главная</a>
+      </li>
+      <li class="nav-item active">
+        <a href="{% url 'AutoHome-auto' %}" class="ml-5">Каталог</a>
+      </li>
+        {% if user.is_authenticated %}
+            <li class="nav-item active">
+            <a href="{% url 'AutoHome-all-rezerv-auto' %}" class="ml-5">Забронированные авто</a>
+            </li>
+        {% endif %}
+    </ul>
+      {% if user.is_authenticated %}
+    <form class="form-inline my-2 my-lg-0">
+      <a href="{% url 'AutoHome-account' %}" class="mr-sm-4">{{ request.user }}</a>
+      <a href="{% url 'AutoHome-sign-out' %}?next={% url 'AutoHome-home' %}" class="btn btn-red my-2 my-sm-0">Выход</a>
+    </form>
+      {% else %}
+      <form class="form-inline my-2 my-lg-0">
+          <a href="{% url 'AutoHome-sign-in' %}" class="btn btn-red my-2 my-sm-0">Войти</a>
+      </form>
+    {% endif %}
+  </div>
+</nav>
+{% endblock %}
+
+
