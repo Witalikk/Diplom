@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -19,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'e*pjkxy$1#arra4jewk!qdyzvu2o@%!t=wc&og5#vjkv7-yn6a'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -82,6 +86,17 @@ WSGI_APPLICATION = 'AutoHomeProject.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': os.getenv('POSTGRES_DB', 'AutoHome'),
+#         'USER': os.getenv('POSTGRES_USER', 'admin'),
+#         'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'admin'),
+#         'HOST': os.getenv('POSTGRES_HOST', 'postgresdb'),
+#         'PORT': os.getenv('POSTGRES_PORT', '5432'),
+#     }
+# }
 
 DATABASES = {
     'default': {
@@ -190,14 +205,14 @@ DJOSER = {
     'SERIALIZERS': {},
 }
 
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'autohome228@gmail.com'
-EMAIL_HOST_PASSWORD = 'AutoHome322'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
+EMAIL_HOST = os.getenv('EMAIL_HOST', 'smtp.gmail.com')
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', 'autohome228@gmail.com')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+EMAIL_PORT = os.getenv('EMAIL_PORT', '587')
+EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS', True)
 
-SOCIAL_AUTH_VK_OAUTH2_KEY = '7837918'
-SOCIAL_AUTH_VK_OAUTH2_SECRET = 'ICIBwp4DTJzEhJ64zRI1'
+SOCIAL_AUTH_VK_OAUTH2_KEY = os.getenv('SOCIAL_AUTH_VK_OAUTH2_KEY')
+SOCIAL_AUTH_VK_OAUTH2_SECRET = os.getenv('SOCIAL_AUTH_VK_OAUTH2_SECRET')
 
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.vk.VKOAuth2',
@@ -208,8 +223,8 @@ AUTHENTICATION_BACKENDS = (
 SOCIAL_AUTH_POSTGRES_JSONFIELD = True
 
 # REDIS related settings
-REDIS_HOST = '127.0.0.1'
-REDIS_PORT = '6379'
+REDIS_HOST = os.getenv('REDIS_HOST')
+REDIS_PORT = os.getenv('REDIS_PORT')
 CELERY_BROKER_URL = 'redis://' + REDIS_HOST + ":" + REDIS_PORT
 CELERY_BROKER_TRANSPORT_OPTIONS = {'visibility_timeout': 3600}
 CELERY_RESULT_BACKEND = 'redis://' + REDIS_HOST + ":" + REDIS_PORT

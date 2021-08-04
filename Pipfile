@@ -18,6 +18,7 @@ flake8 = "*"
 celery = "*"
 redis = "*"
 eventlet = "*"
+python-dotenv = "*"
 
 [dev-packages]
 

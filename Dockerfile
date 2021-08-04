@@ -6,7 +6,8 @@ WORKDIR /usr/src/app
 
 COPY Pipfile Pipfile.lock ./
 
-RUN pip install pipenv
+RUN pip install pipenv \
+    && pipenv install --deploy --system --ignore-pipfile
 
 COPY entrypoint.sh .
 
